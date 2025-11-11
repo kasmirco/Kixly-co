@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kixly</title>
+  <link rel="icon" href="logo.png">
+
+
+  <style>
+    :root {
+      --accent1: #009ffd;
+      --accent2: #2a2a72;
+      --white: #cce7ff;
+      --muted: #555;
+      --bg: #f9f9fb;
+      --shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      --radius: 20px;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .phone-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone {
+      width: 380px;
+      background: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 20px;
+  font-size: 18px;
+}
+
+.header .icon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+
+    .shoe-area {
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .shoe-area img {
+      width: 280px;
+      transition: transform 0.4s;
+    }
+
+    .rotate-wrapper {
+      width: 80%;
+      margin-top: 18px;
+    }
+
+    .rotate-slider {
+      width: 100%;
+    }
+
+    .content {
+      padding: 18px 20px;
+    }
+
+    .tag {
+      color: var(--accent1);
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    h2 {
+      margin: 4px 0;
+      color: var(--accent2);
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: var(--accent1);
+    }
+
+    .desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 20px;
+    }
+
+    .colors h4,
+    .sizes h4 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--accent2);
+    }
+
+    .color-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .color-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .size-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .size-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .size-box.active {
+      background: var(--accent1);
+      color: #fff;
+      font-weight: 600;
+    }
+
+.bottom-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 20px;
+  border-top: 1px solid #ddd;
+  gap: 10px;
+}
+
+.bag-btn, .fav-btn {
+  background: #fff;
+  border: 2px solid var(--accent1);
+  color: var(--accent2);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.bag-btn img, .fav-btn img {
+  width: 18px;
+}
+
+.bag-btn:hover, .fav-btn:hover {
+  background: var(--accent1);
+  color: white;
+}
+
+.buy-btn {
+  flex: 1;
+  background: var(--accent1);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.buy-btn:hover {
+  transform: translateY(-2px);
+}
+
+    @media (max-width: 480px) {
+      .phone {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="phone-wrapper">
+    <div class="phone">
+
+<div class="header">
+  <a href="indexhome.html">
+    <img src="back.png" alt="Back" class="icon" />
+  </a>
+  <span>StreetFlex</span>
+  <a href="myBag.html"><img src="cart.png" alt="Cart" class="icon" /></a>
+</div>
+
+      <div class="shoe-area">
+
+        <img id="shoeImg" src="men3(shoes).png" />
+
+        <div class="rotate-wrapper">
+          <input
+            type="range"
+            min="-45"
+            max="45"
+            value="0"
+            class="rotate-slider"
+            oninput="rotateShoe(this.value)"
+          />
+        </div>
+
+      </div>
+
+      <div class="content">
+        <p class="tag">HOT DEAL</p>
+        <h2>StreetMaster</h2>
+        <p class="price">₱6,500</p>
+
+        <p class="desc">
+          StreetMaster gives you the perfect mix of style and durability for urban exploration.
+        </p>
+
+        <div class="colors">
+          <h4>Colors</h4>
+          <div class="color-buttons">
+            <button class="color-btn" onclick="setColor(0)"   style="background:#003a16;"></button>
+            <button class="color-btn" onclick="setColor(90)"  style="background:#020516;"></button>
+            <button class="color-btn" onclick="setColor(200)" style="background:#2e0000;"></button>
+          </div>
+        </div>
+
+        <div class="sizes">
+          <h4>Size</h4>
+          <div class="size-options">
+            <div class="size-box active">38</div>
+            <div class="size-box">39</div>
+            <div class="size-box">40</div>
+            <div class="size-box">41</div>
+            <div class="size-box">42</div>
+            <div class="size-box">43</div>
+          </div>
+        </div>
+      </div>
+
+<!-- Footer / Bottom Actions -->
+<div class="bottom-actions">
+<button class="bag-btn" id="addFavBtn">
+  <img src="fav.png" class="icon" alt="Favorite" />
+  Add to Favorite
+</button>
+
+<button class="bag-btn" id="addToBagBtn">
+  <img src="cart.png" class="icon" alt="Bag" />
+  Add to Bag
+</button>
+
+<button class="buy-btn" id="buyNowBtn">Buy Now!</button>
+</div>
+
+    </div>
+  </div>
+<div id="favPopup" style="
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent1);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+">
+  Added to Favorites!
+</div>
+
+<script>
+
+// direct to checkout from details
+const buyNowBtn = document.getElementById("buyNowBtn");
+
+buyNowBtn.addEventListener("click", () => {
+  const chosenSize = document.querySelector(".size-box.active")?.innerText || "N/A";
+  
+  // Get shoe details
+  const shoeName = document.querySelector("h2").innerText;
+  const shoePrice = document.querySelector(".price").innerText;
+  const shoeImg = document.getElementById("shoeImg").src;
+
+  // Convert price to number
+  const priceNum = parseFloat(shoePrice.replace("₱", "").replace(",", ""));
+
+  // Create product object
+  const product = {
+    name: shoeName,
+    price: priceNum,
+    img: shoeImg,
+    qty: 1,
+    size: chosenSize
+  };
+
+  // Save to localStorage
+  localStorage.setItem("bag", JSON.stringify([product])); // replace bag with just this item
+
+  // Redirect to checkout
+  window.location.href = "checkout.html";
+});
+// direct to checkout from details
+//bag
+const addToBagBtn = document.getElementById("addToBagBtn");
+
+addToBagBtn.addEventListener("click", () => {
+  const chosenSize = document.querySelector(".size-box.active")?.innerText || "N/A";
+
+  let bag = JSON.parse(localStorage.getItem("bag")) || [];
+
+  const product = {
+    name: shoeName,
+    price: parseFloat(shoePrice.replace("₱", "").replace(",", "")),
+    img: shoeImg,
+    qty: 1,
+    size: chosenSize
+  };
+
+  bag.push(product);
+
+  localStorage.setItem("bag", JSON.stringify(bag));
+
+  window.location.href = "myBag.html";
+});
+// bag
+  // fav
+  // Grab button and shoe info
+const addFavBtn = document.getElementById("addFavBtn");
+const shoeName = document.querySelector("h2").innerText;
+const shoePrice = document.querySelector(".price").innerText;
+const shoeImg = document.getElementById("shoeImg").src;
+
+// Show popup function
+function showPopup() {
+  const popup = document.getElementById("favPopup");
+  popup.style.opacity = 1;
+  setTimeout(() => {
+    popup.style.opacity = 0;
+  }, 1200);
+}
+
+// Add to favorites
+addFavBtn.addEventListener("click", () => {
+  // Get current favorites from localStorage
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Add current shoe
+  favorites.push({ name: shoeName, price: shoePrice, img: shoeImg });
+
+  // Save back to localStorage
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+  // Show popup
+  showPopup();
+
+  // Redirect after short delay
+  setTimeout(() => {
+    window.location.href = "favorite.html";
+  }, 1400);
+});
+  // fav
+  function setColor(deg) {
+    document.getElementById("shoeImg").style.filter = `hue-rotate(${deg}deg)`;
+  }
+
+  const sizeBoxes = document.querySelectorAll(".size-box");
+  sizeBoxes.forEach(box => {
+    box.addEventListener("click", () => {
+      sizeBoxes.forEach(b => b.classList.remove("active"));
+      box.classList.add("active");
+    });
+  });
+
+  function rotateShoe(deg) {
+    document.getElementById("shoeImg").style.transform = `rotateY(${deg}deg)`;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kixly</title>
+  <link rel="icon" href="logo.png">
+
+<style>
+:root {
+  --accent1: #74cdf7;
+  --accent2: #74cdf7;
+  --white: #cce7ff;
+  --muted: #555;
+  --bg: #f9f9fb;
+  --shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --radius: 20px;
+  --transition: 0.3s ease;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.phone-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  width: 380px;
+  background: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+/* Header */
+.header {
+  padding: 30px 20px 40px;
+  text-align: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 18px;
+  position: relative;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.header .back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -20px;
+}
+.profile-section img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #009ffd;
+  box-shadow: var(--shadow);
+  margin-bottom: 10px;
+}
+.change-photo {
+  background: var(--accent1);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.change-photo:hover {
+  background: var(--accent2);
+}
+
+/* Form Section */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+input {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+input:focus {
+  border-color: var(--accent1);
+  box-shadow: 0 0 6px rgba(0,136,255,0.2);
+}
+
+/* Map */
+#map {
+  width: 100%;
+  height: 150px;
+  border-radius: 12px;
+  margin-top: -4px;
+  margin-bottom: 10px;
+  background: url('map.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+#map-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -100%);
+  top: 50%;
+  left: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Save button */
+.save-btn {
+  margin-top: 10px;
+  background: var(--accent1);
+  color: #fff;
+  font-size: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+.save-btn:hover {
+  background: var(--accent2);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  background: #fff;
+  border-top: 1px solid #eee;
+  position: sticky;
+  bottom: 0;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+}
+.bottom-nav img {
+  width: 26px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.bottom-nav img.active {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px rgba(0,136,255,0.4));
+}
+.center-btn {
+  background: #74cdf7;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+  transform: translateY(-25%);
+}
+.center-btn img {
+  width: 30px;
+  height: 30px;
+}
+/* Success notification */
+#success-msg {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent1);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, top 0.4s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#success-msg.show {
+  top: 40px;
+  opacity: 1;
+  pointer-events: auto;
+}
+#success-msg button {
+  background: #fff;
+  color: var(--accent1);
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#success-msg button:hover {
+  background: #e0f0ff;
+}
+
+@media (max-width: 480px) {
+  .phone {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="phone-wrapper">
+  <div class="phone">
+<div id="success-msg">
+  <span>Profile updated successfully!</span>
+  <button id="back-btn">Back to Profile</button>
+</div>
+    <!-- Header -->
+<div class="header">
+  <img src="back.png" alt="Back" class="back-btn" onclick="window.location.href='profile.html'">
+  Edit Profile
+</div>
+
+
+    <!-- Profile Picture -->
+    <div class="profile-section">
+      <img src="ai formal - me (1x1).png" alt="Profile Picture">
+      <button class="change-photo">Change Photo</button>
+      <input type="file" id="photo-input" style="display:none;" accept="image/*">
+    </div>
+
+    <!-- Edit Profile Form -->
+    <form>
+      <div>
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="John Kenneth Costinar" />
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="johnkenneth" />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="johnkenneth@gmail.com" />
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <input type="text" id="address" placeholder="Calzada Tipas, Taguig City" />
+      </div>
+
+      <!-- Map -->
+      <div id="map">
+        <img id="map-pin" src="pin.png" alt="Pin">
+      </div>
+
+      <button class="save-btn" type="button" id="save-btn">Save Changes</button>
+    </form>
+
+    <!-- Bottom Navigation -->
+    <footer class="bottom-nav">
+      <a href="indexhome.html"><img src="home.png" alt="Home" data-default="home.png" data-active="home(active).png"></a>
+      <a href="favorite.html"><img src="fav.png" alt="Favorites" data-default="fav.png" data-active="fav(active).png"></a>
+      <a href="myBag.html"><div class="center-btn"><img src="bag.png" alt="+"></div></a>
+      <a href="notification.html"><img src="bell.png" alt="Messages" data-default="bell.png" data-active="bell(active).png"></a>
+      <a href="profile.html"><img src="profile(active).png" alt="Profile" class="active" data-default="profile.png" data-active="profile(active).png"></a>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  // Bottom Nav Switching
+  const navIcons = document.querySelectorAll('.bottom-nav img:not(.center-btn img)');
+  navIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      navIcons.forEach(i => {
+        i.classList.remove('active');
+        i.src = i.getAttribute('data-default');
+      });
+      icon.classList.add('active');
+      icon.src = icon.getAttribute('data-active');
+    });
+  });
+
+  // Profile Picture Change
+  const profileImg = document.querySelector('.profile-section img');
+  const changeBtn = document.querySelector('.change-photo');
+  const photoInput = document.getElementById('photo-input');
+  changeBtn.addEventListener('click', () => photoInput.click());
+  photoInput.addEventListener('change', () => {
+    const file = photoInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => profileImg.src = reader.result;
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Map pin movement
+  const map = document.getElementById('map');
+  const pin = document.getElementById('map-pin');
+  const addressInput = document.getElementById('address');
+
+  function movePinRandomly() {
+    const pinWidth = pin.offsetWidth;
+    const pinHeight = pin.offsetHeight;
+    const x = Math.random() * (map.clientWidth - pinWidth) + pinWidth / 2;
+    const y = Math.random() * (map.clientHeight - pinHeight) + pinHeight / 2;
+    pin.style.left = `${x}px`;
+    pin.style.top = `${y}px`;
+  }
+
+  // Move pin while typing or changing address
+  addressInput.addEventListener('input', movePinRandomly);
+  addressInput.addEventListener('change', movePinRandomly);
+
+  // Save profile
+  const saveBtn = document.getElementById('save-btn');
+  const successMsg = document.getElementById('success-msg');
+  const backBtn = document.getElementById('back-btn');
+
+  saveBtn.addEventListener('click', () => {
+    const profileData = {
+      fullname: document.getElementById('fullname').value,
+      username: document.getElementById('username').value,
+      email: document.getElementById('email').value,
+      address: document.getElementById('address').value,
+      photo: profileImg.src
+    };
+    localStorage.setItem('profile', JSON.stringify(profileData));
+
+    // Show success message
+    successMsg.classList.add('show');
+
+    // Back button click
+    backBtn.addEventListener('click', () => {
+      window.location.href = 'profile.html';
+    });
+  });
+
+  // Load profile on page load
+  window.addEventListener('load', () => {
+    const savedProfile = JSON.parse(localStorage.getItem('profile'));
+    if (savedProfile) {
+      document.getElementById('fullname').value = savedProfile.fullname;
+      document.getElementById('username').value = savedProfile.username;
+      document.getElementById('email').value = savedProfile.email;
+      document.getElementById('address').value = savedProfile.address;
+      if (savedProfile.photo) profileImg.src = savedProfile.photo;
+      movePinRandomly();
+    }
+  });
+</script>
+
+</body>
+</html>

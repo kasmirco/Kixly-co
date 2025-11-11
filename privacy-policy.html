@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kixly.co</title>
+  <link rel="icon" href="logo.png">
+  <style>
+    :root {
+  --accent1: #74cdf7;
+  --accent2: #7ec7ff;
+      --white: #ffffff;
+      --muted: #555;
+      --bg: #f9f9fb;
+      --radius: 24px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, var(--accent1), var(--accent2));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+      
+    }
+
+    .phone-wrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(0, 34, 54, 0.623);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 20px 18px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .header-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .header-logo img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    header.tabs {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .terms-section {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+    }
+
+    .terms-section.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h3 {
+      color: var(--accent2);
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 4px 0 10px;
+      text-align: justify;
+      line-height: 1.5;
+    }
+
+    .small-link {
+      color: var(--accent1);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .small-link:hover {
+      text-decoration: underline;
+    }
+
+    .nav-btn {
+      margin-top: 12px;
+      padding: 12px;
+      background: linear-gradient(180deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border: none;
+      border-radius: 28px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(3,115,230,0.18);
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    footer.footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .phone {
+        padding: 16px;
+      }
+      .header-logo img {
+        width: 70px;
+        height: 70px;
+      }
+      h3 { font-size: 15px; }
+      p { font-size: 13px; }
+      .nav-btn { font-size: 14px; padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone-wrapper">
+    <div class="phone">
+      <!-- Logo -->
+      <div class="header-logo">
+        <img src="logo.png" alt="Kixly Logo">
+      </div>
+
+      <header class="tabs">
+        <h2 style="font-size:18px; font-weight:700; color:var(--accent2); margin:0;">Privacy Policy</h2>
+      </header>
+
+      <!-- Section 1 -->
+      <section class="terms-section active" id="section1">
+        <h3>1. Introduction</h3>
+        <p>At Kixly.co, your privacy is our top priority. This Privacy Policy explains how we collect, use, and protect your information when you use our platform and services.</p>
+
+        <h3>2. Information We Collect</h3>
+        <p>We may collect personal information such as your name, email, and account details when you sign up or use our services. We also gather non-personal data like browser type and device information to improve your experience.</p>
+
+        <button class="nav-btn" onclick="nextSection(2)">Next</button>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="terms-section" id="section2">
+        <h3>3. How We Use Your Information</h3>
+        <p>Your data is used to provide, maintain, and improve our services, including account management, customer support, and communication updates.</p>
+
+        <h3>4. Data Protection</h3>
+        <p>We use advanced security measures to protect your personal information from unauthorized access, alteration, or disclosure. However, no system is completely secure, and we cannot guarantee absolute protection.</p>
+
+        <button class="nav-btn" onclick="prevSection(1)">Back</button>
+        <button class="nav-btn" onclick="nextSection(3)">Next</button>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="terms-section" id="section3">
+        <h3>5. Sharing of Information</h3>
+        <p>Kixly.co does not sell or rent your personal information. We may share data only with trusted third parties who help us deliver our services safely and efficiently.</p>
+
+        <h3>6. Your Rights</h3>
+        <p>You have the right to access, correct, or delete your personal data. To exercise these rights, contact our support team at 
+          <a href="mailto:support@kixly.co" class="small-link">support@kixly.co</a>.
+        </p>
+
+        <h3>7. Updates to This Policy</h3>
+        <p>We may update this Privacy Policy from time to time. We encourage you to review this page regularly for any changes.</p>
+
+        <p><strong>Last Updated:</strong> November 2025</p>
+
+        <button class="nav-btn" onclick="prevSection(2)">Back</button>
+        <button class="nav-btn" onclick="window.location.href='index.html'">Back to Sign In</button>
+      </section>
+
+      <footer class="footer-note">Kixly.co</footer>
+    </div>
+  </main>
+
+  <script>
+    const sections = document.querySelectorAll('.terms-section');
+
+    function showSection(id) {
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const target = document.getElementById(`section${id}`);
+      target.classList.add('active');
+    }
+
+    function nextSection(id) {
+      showSection(id);
+    }
+
+    function prevSection(id) {
+      showSection(id);
+    }
+
+    // Dark mode detection
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const setTheme = () => document.body.classList.toggle('dark', prefersDark.matches);
+    setTheme();
+    prefersDark.addEventListener('change', setTheme);
+  </script>
+</body>
+</html>

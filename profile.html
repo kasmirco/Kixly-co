@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kixly</title>
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root {
+      --accent1: #009ffd;
+      --accent2: #2a2a72;
+      --white: #cce7ff;
+      --muted: #555;
+      --bg: #f9f9fb;
+      --shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      --radius: 20px;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .phone-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone {
+      width: 380px;
+      background: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    /* Header */
+    .header {
+      background: var(--white);
+      padding: 20px 20px 60px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .header-top .icon {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    }
+
+    .profile-info {
+      text-align: center;
+      color: #000;
+    }
+
+    .profile-info img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #009ffd;
+      box-shadow: var(--shadow);
+      margin-bottom: 10px;
+    }
+
+    .profile-info h2 {
+      margin: 4px 0 2px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .profile-info p {
+      margin: 0;
+      font-size: 13px;
+      color: #333;
+    }
+
+    .profile-info .favorites {
+      color: #555;
+      font-size: 13px;
+    }
+
+    .update-username {
+      background: #f2f7fb;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #555;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .update-username a {
+      color: var(--accent1);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Purchases */
+    .purchases {
+      padding: 20px 10px 10px;
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid #948f8f;
+    }
+
+    .purchase-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+      color: #333;
+      cursor: pointer;
+      width: 60px; /* uniform width */
+    }
+
+    .purchase-item img {
+      width: 26px;  /* uniform size */
+      height: 26px; /* uniform size */
+      margin-bottom: 5px;
+      transition: var(--transition);
+      object-fit: contain; /* maintain proportions */
+    }
+
+    .purchase-item.active img {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 5px rgba(0, 136, 255, 0.4));
+    }
+
+    /* Sections */
+    .exclusive-section {
+      padding: 10px 16px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+/* Keep space even if empty */
+.blank-area {
+  width: 100%;
+  height: 230px;        /* ✅ Fixed content area */
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px dashed #d4d4d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Make each section stay same height */
+.exclusive-section {
+  min-height: 360px;    /* ✅ Locks height */
+  background: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e3e3e3;
+}
+
+    .exclusive-section h2 {
+      font-size: 15px;
+      font-weight: 200;
+      color: #5c5c5c;
+      margin: 1px 1px 0px;
+    }
+
+    .exclusive-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #80c6ff2a;
+      border-radius: 15px;
+      border: 1px solid #aee3ff;
+      box-shadow: var(--shadow);
+      padding: 12px 16px;
+      transition: all 0.3s ease;
+    }
+
+    .exclusive-card:hover {
+      transform: scale(1.03);
+      background: #45addd86;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.342);
+    }
+
+    .exclusive-card img {
+      width: 120px;
+      height: 80px;
+    }
+
+    .exclusive-card span {
+      font-weight: 200;
+      font-size: 16px;
+      color: #4d4d4d;
+      text-transform: uppercase;
+    }
+
+    .exclusive-card button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 10px;
+      background: var(--accent1);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Tracking Section */
+    .tracking-section {
+      display: none;
+      padding: 22px 16px 80px;
+    }
+
+    .map-box {
+      width: 100%;
+      height: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow);
+      border: 1px solid #aee3ff;
+      background: url('map.png') center/cover no-repeat;
+    }
+
+    .truck {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('track(active).png') center/contain no-repeat;
+    }
+
+    @keyframes moveTruck {
+      0% { left: 20px; bottom: 20px; }
+      100% { left: 230px; bottom: 150px; }
+    }
+
+    .pin {
+      position: absolute;
+      top: 40%;
+      right: 20%;
+      width: 30px;
+      height: 30px;
+      background: url('pin.png') center/contain no-repeat;
+    }
+
+    .estimate-box {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow);
+      font-size: 14px;
+    }
+
+    /* Loading Screen */
+    .loading {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 280px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent1);
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      margin-top: -72px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      background: #fff;
+      border-top: 1px solid #eee;
+      position: sticky;
+      bottom: 0;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .bottom-nav img {
+      width: 26px;
+      opacity: 0.6;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .bottom-nav img.active {
+      opacity: 1;
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 5px rgba(0, 136, 255, 0.4));
+    }
+
+    .center-btn {
+      background: #74cdf7;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow);
+      transform: translateY(-25%);
+    }
+
+    .center-btn img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (max-width: 480px) {
+      .phone { width: 100%; border-radius: 0; }
+    }
+
+
+    /* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 28px 22px;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+/* Header (User info) */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.sidebar-header .profile-pic {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+}
+
+.sidebar-header .user-info p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.sidebar-header .user-info h3 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Sidebar Links */
+.sidebar-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 12px 0;
+  flex-grow: 0; /* prevent stretching */
+}
+
+.sidebar-links li {
+  margin: 18px 0;
+}
+
+.sidebar-links a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar-links a img {
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  opacity: 0.85;
+}
+
+.sidebar-links a:hover {
+  color: #009ffd;
+  transform: translateX(3px);
+}
+
+/* Logout Button (snug under the links) */
+.logout-btn {
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+  margin-top: 450px;   /* close to the links */
+  align-self: flex-start; /* aligns nicely with links instead of center */
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: #ff2a2a;
+}
+
+.logout-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Logout Popup Styles */
+.logout-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+
+.logout-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px 40px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: scaleIn 0.3s ease forwards;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Simple circular loader */
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top-color: #009ffd;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.popup-box p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+
+  </style>
+</head>
+
+<body>
+
+
+  <!-- Sidebar Menu -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-header">
+    <img src="ai formal - me (1x1).png" alt="User" class="profile-pic">
+    <div class="user-info">
+      <p>Hey, 👋</p>
+      <h3>John</h3>
+    </div>
+  </div>
+
+  <ul class="sidebar-links">
+    <li><a href="profile.html"><img src="profile.png" alt="">Profile</a></li>
+    <li><a href="indexhome.html"><img src="home.png" alt="">Home Page</a></li>
+    <li><a href="myBag.html"><img src="bag.png" alt="">My Cart</a></li>
+    <li><a href="favorite.html"><img src="fav.png" alt="">Favorite</a></li>
+    <li><a href="notification.html"><img src="bell.png" alt="">Notifications</a></li>
+  </ul>
+
+  <button id="logoutBtn" class="logout-btn">
+    <img src="logout.png" alt=""> Log Out
+  </button>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="overlay"></div>
+<!-- Logout Loading Popup -->
+<div id="logoutPopup" class="logout-popup">
+  <div class="popup-box">
+    <div class="loader"></div>
+    <p>Processing logout...</p>
+  </div>
+</div>
+
+  <div class="phone-wrapper">
+    <div class="phone">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-top">
+          <img src="menu.png" alt="Menu" class="icon">
+        </div>
+        <div class="profile-info">
+          <img id="profile-img" src="ai formal - me (1x1).png" alt="Profile Picture">
+          <h2 id="profile-name">John Kenneth Costinar</h2>
+          <p id="profile-address">Calzada Tipas, Taguig City</p>
+          <p class="favorites">4 Favorites</p>
+        </div>
+      </div>
+
+      <!-- Update -->
+      <div class="update-username">
+        <span>Update your username.</span>
+        <a href="editprofile.html">Update Now</a>
+      </div>
+
+      <!-- Purchases -->
+      <div class="purchases">
+        <div class="purchase-item" data-default="wallet.png" data-active="wallet(active).png">
+          <img src="wallet.png" alt="To Pay"><span>To Pay</span>
+        </div>
+        <div class="purchase-item" data-default="box.png" data-active="box(active).png">
+          <img src="box.png" alt="To Ship"><span>To Ship</span>
+        </div>
+        <div class="purchase-item" data-default="recieve.png" data-active="recieve(active).png">
+          <img src="recieve.png" alt="To Receive"><span>To Receive</span>
+        </div>
+        <div class="purchase-item" id="toTrackBtn" data-default="track.png" data-active="track(active).png">
+          <img src="track.png" alt="To Track"><span>To Track</span>
+        </div>
+      </div>
+
+      <!-- Sections -->
+      <!-- Recommendations -->
+      <div class="exclusive-section" id="recommendSection">
+        <h2>Recommendations</h2>
+        <a href="detailsNike5.html"><div class="exclusive-card">
+          <span>EXCLUSIVE SALE ★ <br> Nike Air Zoom <br> ₱4,000 Only!</span>
+          <img src="p1-profile.png" alt="Shoe">
+        </div></a>
+        <a href="detailsNike8.html"><div class="exclusive-card">
+          <img src="p2-profile.png" alt="Shoe">
+          <span>LIMITED DROP ★ <br> Nike Ultra <br> ₱3,799!</span>
+        </div></a>
+        <a href="detailsNike9.html"><div class="exclusive-card">
+          <span>NEW ARRIVAL ★ <br> Nike RS-X <br> ₱3,499!</span>
+          <img src="p3-profile.png" alt="Shoe">
+        </div></a>
+      </div>
+
+<!-- To Pay -->
+<div class="exclusive-section" id="paySection" style="display:none;">
+  <h2>To Pay</h2>
+
+  <!-- Blank layout reserved area -->
+  <div class="blank-area">
+    No items to show
+  </div>
+</div>
+
+
+<!-- To Ship -->
+<div class="exclusive-section" id="shipSection" style="display:none;">
+  <h2>To Ship</h2>
+
+  <!-- Blank layout reserved area -->
+  <div class="blank-area">
+    No items to show
+  </div>
+</div>
+
+
+<!-- To Receive -->
+<div class="exclusive-section" id="receiveSection" style="display:none;">
+  <h2>To Receive</h2>
+
+  <!-- Blank layout reserved area -->
+  <div class="blank-area">
+    No items to show
+  </div>
+</div>
+  
+
+<!-- Tracking Section -->
+<div class="tracking-section" id="trackSection">
+  <h2>Tracking Your Order</h2>
+  <div class="loading" id="loadingScreen">Loading route…</div>
+
+  <div class="map-box" id="mapBox" style="display:none;">
+    <div class="pin"></div>
+    <div class="truck" id="truck"></div>
+    <div class="estimate-box" id="estimateBox">
+      <strong>Estimated:</strong> 2 hr 12 mins
+    </div>
+    <div class="popup" id="popup" style="
+      position:absolute;
+      bottom:80px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:10px 15px;
+      background:#009ffd;
+      color:white;
+      border-radius:12px;
+      display:none;
+      box-shadow:0 6px 16px rgba(0,0,0,0.2);
+      font-size:14px;
+      text-align:center;
+    ">Package has arrived at the pin!</div>
+  </div>
+</div>
+
+      <!-- Bottom Nav -->
+      <footer class="bottom-nav">
+        <a href="indexhome.html"><img src="home.png" alt="Home"></a>
+        <a href="favorite.html"><img src="fav.png" alt="Favorites"></a>
+        <a href="myBag.html"><div class="center-btn"><img src="bag.png" alt="+"></div></a>
+        <a href="notification.html"><img src="bell.png" alt="Notifications"></a>
+        <a href="profile.html"><img src="profile(active).png" alt="Profile" class="active"></a>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+const purchaseItems = document.querySelectorAll('.purchase-item');
+const recommendSection = document.getElementById('recommendSection');
+const paySection = document.getElementById('paySection');
+const shipSection = document.getElementById('shipSection');
+const receiveSection = document.getElementById('receiveSection');
+const trackSection = document.getElementById('trackSection');
+const loadingScreen = document.getElementById('loadingScreen');
+const mapBox = document.getElementById('mapBox');
+const truck = document.getElementById('truck');
+const popup = document.getElementById('popup');
+const estimateBox = document.getElementById('estimateBox');
+
+purchaseItems.forEach(item => {
+  item.addEventListener('click', () => {
+    // Reset all icons
+    purchaseItems.forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('img').src = i.getAttribute('data-default');
+    });
+
+    // Activate clicked icon
+    item.classList.add('active');
+    item.querySelector('img').src = item.getAttribute('data-active');
+
+    // Hide all sections
+    recommendSection.style.display = 'none';
+    paySection.style.display = 'none';
+    shipSection.style.display = 'none';
+    receiveSection.style.display = 'none';
+    trackSection.style.display = 'none';
+
+    const label = item.querySelector('span').textContent;
+
+    // Show relevant section
+    if (label === 'To Pay') {
+      paySection.style.display = 'block';
+    } else if (label === 'To Ship') {
+      shipSection.style.display = 'block';
+    } else if (label === 'To Receive') {
+      receiveSection.style.display = 'block';
+    } else if (label === 'To Track') {
+      trackSection.style.display = 'block';
+      mapBox.style.display = 'none';
+      loadingScreen.style.display = 'flex';
+
+      // Simulate loading
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        mapBox.style.display = 'block';
+
+        // Reset truck
+        truck.style.left = '20px';
+        truck.style.bottom = '20px';
+        popup.style.display = 'none';
+
+        // Define pin location (example: 80% width, 40% height)
+        const pinLeft = mapBox.offsetWidth * 0.8;
+        const pinBottom = mapBox.offsetHeight * 0.4;
+
+        const totalSteps = 100;
+        let step = 0;
+
+        // Estimated time in minutes (example: 2 hr 12 mins = 132 min)
+        const totalMinutes = 132;
+        let remaining = totalMinutes;
+
+        const interval = setInterval(() => {
+          step++;
+          const progress = step / totalSteps;
+
+          // Move truck
+          truck.style.left = `${20 + (pinLeft - 20) * progress}px`;
+          truck.style.bottom = `${20 + (pinBottom - 20) * progress}px`;
+
+          // Update estimated time dynamically
+          remaining = Math.max(0, Math.round(totalMinutes * (1 - progress)));
+          const hours = Math.floor(remaining / 60);
+          const mins = remaining % 60;
+          estimateBox.innerHTML = `<strong>Estimated:</strong> ${hours} hr ${mins} mins`;
+
+          // Show popup when truck reaches pin
+          if (progress >= 1) {
+            popup.style.display = 'block';
+            clearInterval(interval);
+            setTimeout(() => popup.style.display = 'none', 3000);
+          }
+        }, 50); // ~5 seconds total animation
+      }, 3000); // Loading delay
+    } else {
+      recommendSection.style.display = 'block';
+    }
+  });
+});
+
+// Load saved profile from localStorage
+window.addEventListener('load', () => {
+  const savedProfile = JSON.parse(localStorage.getItem('profile'));
+  if (savedProfile) {
+    if (savedProfile.photo) document.getElementById('profile-img').src = savedProfile.photo;
+    if (savedProfile.fullname) document.getElementById('profile-name').textContent = savedProfile.fullname;
+    if (savedProfile.address) document.getElementById('profile-address').textContent = savedProfile.address;
+  }
+});
+
+
+function loadOrders() {
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  let payList = "";
+  let shipList = "";
+  let receiveList = "";
+
+  orders.forEach(order => {
+    let itemName = order.items[0].name;
+    let itemPrice = order.total.toFixed(2);
+
+    if (order.status === "toPay") {
+      payList += `
+      <div class="exclusive-card">
+        <span>${itemName}<br>₱${itemPrice}</span>
+        <button onclick="payOrder(${order.id})">Pay Now</button>
+      </div>`;
+    }
+
+    if (order.status === "toShip") {
+      shipList += `
+      <div class="exclusive-card">
+        <span>Preparing for shipment<br>${itemName}</span>
+      </div>`;
+    }
+
+    if (order.status === "toReceive") {
+      receiveList += `
+      <div class="exclusive-card">
+        <span>Out for delivery<br>${itemName}</span>
+        <div style="width:100%; height:10px; background:#e0e0e0; border-radius:5px; margin-top:6px;">
+          <div style="width:70%; height:100%; background:#009ffd; border-radius:5px;"></div>
+        </div>
+      </div>`;
+    }
+  });
+
+  document.getElementById("paySection").innerHTML = "<h2>To Pay</h2>" + payList;
+  document.getElementById("shipSection").innerHTML = "<h2>To Ship</h2>" + shipList;
+  document.getElementById("receiveSection").innerHTML = "<h2>To Receive</h2>" + receiveList;
+}
+
+loadOrders();
+
+function payOrder(id) {
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  let order = orders.find(o => o.id === id);
+
+  order.status = "toShip";
+  localStorage.setItem("orders", JSON.stringify(orders));
+  loadOrders();          // Refresh view
+  alert("Payment successful! Order moved To Ship.");
+}
+// Sidebar menu open/close
+const menuIcon = document.querySelector('.icon[alt="Menu"]');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const logoutBtn = document.getElementById('logoutBtn');
+const logoutPopup = document.getElementById('logoutPopup');
+
+menuIcon.addEventListener('click', () => {
+  sidebar.classList.add('active');
+  overlay.classList.add('active');
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+});
+
+logoutBtn.addEventListener('click', () => {
+  // Close sidebar
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+
+  // Show popup
+  logoutPopup.classList.add('active');
+
+  // Simulate logout delay (2 seconds)
+  setTimeout(() => {
+    logoutPopup.classList.remove('active');
+    window.location.href = 'index.html';
+  }, 2000);
+});
+
+</script>
+
+</body>
+</html>

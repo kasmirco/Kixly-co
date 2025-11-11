@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kixly — Checkout</title>
+  <link rel="icon" href="logo.png">
+
+  <style>
+    :root {
+      --accent1: #009ffd;
+      --accent2: #009ffd;
+      --white: #ffffff;
+      --bg: #b9e7ff6b;
+      --muted: #555;
+      --shadow: 0 6px 16px rgba(0,0,0,0.15);
+      --radius: 20px;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .phone-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone {
+      width: 400px;
+      background: var(--bg);
+      border-radius: 30px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 840px;
+      position: relative;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      font-size: 18px;
+      background: var(--white);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .header img.icon {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .header img.icon:hover {
+      transform: scale(1.15);
+    }
+
+    .header-title {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .content {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    /* BLOCK */
+    .block {
+      background: var(--white);
+      padding: 16px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .block-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--accent2);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      color: var(--muted);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #ddd;
+      margin: 14px 0;
+    }
+
+    .item-list .row {
+      font-size: 14px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--accent2);
+    }
+
+    /* MAP */
+    #map {
+      width: 100%;
+      height: 150px;
+      border-radius: 12px;
+      background: url('map.png') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    #map-pin {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      transform: translate(-50%, -100%);
+      top: 50%;
+      left: 50%;
+      transition: 0.3s ease;
+    }
+
+    /* BUTTON */
+    .checkout-btn {
+      width: 90%;
+      margin: auto auto 25px;
+      background: var(--accent1);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .checkout-btn:hover {
+      opacity: 0.85;
+      transform: scale(1.03);
+    }
+
+    /* POPUP — LOADING */
+    #loadingPopup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      background: var(--white);
+      padding: 22px 28px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      font-weight: 600;
+      color: var(--accent1);
+      text-align: center;
+    }
+
+    #loadingPopup.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 5px solid #cce7ff;
+      border-top: 5px solid var(--accent1);
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="phone-wrapper">
+  <div class="phone">
+
+    <!-- HEADER -->
+    <div class="header">
+      <a href="myBag.html"><img src="back.png" class="icon" /></a>
+      <div class="header-title">Checkout</div>
+      <img src="cart.png" class="icon" />
+    </div>
+
+    <div class="content">
+
+      <!-- ADDRESS -->
+      <div class="block">
+        <div class="block-title">Delivery Address</div>
+        <p id="addressText">123 Kix Street, Philippines</p>
+
+        <!-- ✅ MAP -->
+        <div id="map">
+          <img id="map-pin" src="pin.png" alt="Pin" />
+        </div>
+      </div>
+
+      <!-- SHIPPING -->
+      <div class="block">
+        <div class="block-title">Shipping Method</div>
+        <p>Standard Delivery (2–4 days)</p>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="block">
+        <div class="block-title">Payment Method</div>
+        <p>Cash on Delivery</p>
+      </div>
+
+      <!-- ORDER SUMMARY -->
+      <div class="block item-list">
+        <div class="block-title">Order Summary</div>
+
+        <div id="checkoutItems"></div>
+
+        <div class="divider"></div>
+
+        <div class="row">
+          <span>Shipping</span>
+          <span id="shippingAmount">₱40.90</span>
+        </div>
+
+        <div class="total-row">
+          <span>Total Cost</span>
+          <span id="finalCost">₱0.00</span>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
+
+  </div>
+</div>
+
+<!-- ✅ LOADING POPUP -->
+<div id="loadingPopup">
+  <div class="spinner"></div>
+  Placing order…
+</div>
+
+<script>
+/* =========================================================
+   ✅ CONSTANTS / GLOBAL
+========================================================= */
+const SHIPPING_FEE = 40.90;
+
+let bag = JSON.parse(localStorage.getItem("bag")) || [];
+
+const checkoutItems = document.getElementById("checkoutItems");
+const finalCost = document.getElementById("finalCost");
+const addressText = document.getElementById("addressText");
+
+
+/* =========================================================
+   ✅ RENDER CHECKOUT LIST
+========================================================= */
+function renderCheckout() {
+  checkoutItems.innerHTML = "";
+  let subtotal = 0;
+
+  if (!bag.length) {
+    checkoutItems.innerHTML = `<p>Your bag is empty.</p>`;
+    finalCost.innerText = "₱0.00";
+    return;
+  }
+
+  bag.forEach(item => {
+    const itemTotal = item.price * item.qty;
+    subtotal += itemTotal;
+
+    checkoutItems.innerHTML += `
+      <div class="row">
+        <span>${item.name} ×${item.qty}</span>
+        <span>₱${itemTotal.toFixed(2)}</span>
+      </div>
+    `;
+  });
+
+  finalCost.innerText = `₱${(subtotal + SHIPPING_FEE).toFixed(2)}`;
+}
+renderCheckout();
+
+
+/* =========================================================
+   ✅ LOAD ADDRESS
+========================================================= */
+function loadAddress() {
+  const profile = JSON.parse(localStorage.getItem("profile"));
+
+  if (profile && profile.address) {
+    addressText.innerText = profile.address;
+  } else {
+    addressText.innerText = "No address available";
+  }
+}
+loadAddress();
+
+
+/* =========================================================
+   ✅ RANDOM PIN — OPTIONAL
+========================================================= */
+function movePin() {
+  const map = document.getElementById("map");
+  const pin = document.getElementById("map-pin");
+  if (!map || !pin) return;
+
+  const x = Math.random() * (map.clientWidth - 40) + 20;
+  const y = Math.random() * (map.clientHeight - 40) + 20;
+
+  pin.style.left = `${x}px`;
+  pin.style.top = `${y}px`;
+}
+movePin();
+
+
+/* =========================================================
+   ✅ PLACE ORDER
+========================================================= */
+function placeOrder() {
+  if (!bag.length) {
+    alert("Your bag is empty.");
+    return;
+  }
+
+  const loadingPopup = document.getElementById("loadingPopup");
+  loadingPopup.classList.add("show");
+
+  let subtotal = bag.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  const newOrder = {
+    id: Date.now(),
+    status: "toPay",
+    items: [...bag],
+    shipping: SHIPPING_FEE,
+    total: subtotal + SHIPPING_FEE,
+    date: new Date().toISOString()
+  };
+
+  // Retrieve + update orders
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders.push(newOrder);
+  localStorage.setItem("orders", JSON.stringify(orders));
+
+  // Feedback
+  setTimeout(() => {
+    loadingPopup.innerHTML = `✅ <br> Order Placed Successfully!`;
+  }, 1200);
+
+  // Clean bag + redirect
+  setTimeout(() => {
+    localStorage.removeItem("bag");
+    window.location.href = "profile.html";
+  }, 2200);
+}
+
+</script>
+
+
+</body>
+</html>

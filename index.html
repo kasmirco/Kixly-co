@@ -71,123 +71,117 @@
   </style>
 </head>
 <body>
-  <main class="phone-wrapper fade-out" id="pageContent">
-    <div class="phone">
-      <!-- Logo -->
-      <div class="header-logo">
-        <img src="logo.png" alt="Kixly Logo">
-      </div>
-
-      <!-- Header Tabs -->
-      <header class="tabs">
-        <button id="tab-signin" class="tab active" aria-pressed="true">Sign In</button>
-        <div class="tab-divider" aria-hidden="true"></div>
-        <button id="tab-signup" class="tab" aria-pressed="false">Sign Up</button>
-      </header>
-
-      <!-- Content -->
-      <section class="content">
-        <!-- Sign In -->
-        <form id="form-signin" class="form" autocomplete="on" novalidate>
-          <label class="label">Email Address
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-          
-          <label class="label">Password
-            <div class="input-with-icon">
-              <input id="signin-password" type="password" name="password" placeholder="●●●●●●●●" required />
-              <button type="button" class="icon-btn eye-btn" aria-label="Toggle password visibility" data-target="signin-password">
-                <svg width="18" height="12" viewBox="0 0 24 24" fill="none">
-                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-              </button>
-            </div>
-          </label>
-
-          <div class="form-row">
-            <label class="checkbox">
-              <input type="checkbox" name="remember" />
-              <span>Remember me</span>
-            </label>
-            <a class="small-link" href="forgot-password.html">Forgot Password?</a>
-          </div>
-
-          <button class="primary-btn" type="submit">Login</button>
-
-          <center>
-            <small class="terms">By tapping "Login", you agree to our 
-              <a href="terms.html">Terms and Conditions</a> and acknowledge our 
-              <a href="privacy-policy.html">Privacy Policy</a>.
-            </small>
-          </center>
-
-          <div class="divider">or Log in with</div>
-          <div class="socials">
-            <button class="social"><img src="google.jpg" alt="Google"></button>
-            <button class="social"><img src="Apple.jpg" alt="Apple"></button>
-            <button class="social"><img src="facebook.png" alt="Facebook"></button>
-          </div>
-        </form>
-
-        <!-- Sign Up -->
-        <form id="form-signup" class="form hidden" autocomplete="on" novalidate>
-          <label class="label">Name
-            <input type="text" name="name" placeholder="Your name" required />
-          </label>
-
-          <label class="label">Phone Number
-            <input type="tel" name="phone" placeholder="Enter phone number" required />
-          </label>
-
-          <label class="label">Email Address
-            <input type="email" name="email" placeholder="example@gmail.com" required />
-          </label>
-
-          <label class="label">Password
-            <div class="input-with-icon">
-              <input id="signup-password" type="password" name="password" placeholder="●●●●●●●●" required />
-              <button type="button" class="icon-btn eye-btn" aria-label="Toggle password visibility" data-target="signup-password">
-                <svg width="18" height="12" viewBox="0 0 24 24" fill="none">
-                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="currentColor" stroke-width="1.5"/>
-                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                </svg>
-              </button>
-            </div>
-          </label>
-
-          <button class="primary-btn" type="submit">Sign Up</button>
-
-          <div class="divider">or Log in with</div>
-          <div class="socials">
-            <button class="social"><img src="google.jpg" alt="Google"></button>
-            <button class="social"><img src="Apple.jpg" alt="Apple"></button>
-            <button class="social"><img src="facebook.png" alt="Facebook"></button>
-          </div>
-        </form>
-      </section>
-
-      <footer class="footer-note">Kixly.co</footer>
+<main class="phone-wrapper fade-out" id="pageContent">
+  <div class="phone">
+    <div class="header-logo">
+      <img src="logo.png" alt="Kixly Logo">
     </div>
-  </main>
 
-  <!-- Popup -->
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <h2 id="popup-title">Message</h2>
-      <p id="popup-text">This is a popup message.</p>
-      <button id="popup-btn">OK</button>
-    </div>
+    <header class="tabs">
+      <button id="tab-signin" class="tab active" aria-pressed="true">Sign In</button>
+      <div class="tab-divider" aria-hidden="true"></div>
+      <button id="tab-signup" class="tab" aria-pressed="false">Sign Up</button>
+    </header>
+
+    <section class="content">
+      <!-- Sign In -->
+      <form id="form-signin" class="form" autocomplete="on" novalidate>
+        <label class="label">Email Address
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </label>
+
+        <label class="label">Password
+          <div class="input-with-icon">
+            <input id="signin-password" type="password" name="password" placeholder="●●●●●●●●" required />
+            <button type="button" class="icon-btn eye-btn" aria-label="Toggle password visibility" data-target="signin-password">
+              <svg width="18" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox" name="remember" />
+            <span>Remember me</span>
+          </label>
+          <a class="small-link" href="forgot-password.html">Forgot Password?</a>
+        </div>
+
+        <button class="primary-btn" type="submit">Login</button>
+
+        <center>
+          <small class="terms">By tapping "Login", you agree to our 
+            <a href="terms.html">Terms and Conditions</a> and acknowledge our 
+            <a href="privacy-policy.html">Privacy Policy</a>.
+          </small>
+        </center>
+
+        <div class="divider">or Log in with</div>
+        <div class="socials">
+          <button class="social"><img src="google.jpg" alt="Google"></button>
+          <button class="social"><img src="Apple.jpg" alt="Apple"></button>
+          <button class="social"><img src="facebook.png" alt="Facebook"></button>
+        </div>
+      </form>
+
+      <!-- Sign Up -->
+      <form id="form-signup" class="form hidden" autocomplete="on" novalidate>
+        <label class="label">Name
+          <input type="text" name="name" placeholder="Your name" required />
+        </label>
+
+        <label class="label">Phone Number
+          <input type="tel" name="phone" placeholder="Enter phone number" required />
+        </label>
+
+        <label class="label">Email Address
+          <input type="email" name="email" placeholder="example@gmail.com" required />
+        </label>
+
+        <label class="label">Password
+          <div class="input-with-icon">
+            <input id="signup-password" type="password" name="password" placeholder="●●●●●●●●" required />
+            <button type="button" class="icon-btn eye-btn" aria-label="Toggle password visibility" data-target="signup-password">
+              <svg width="18" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </button>
+          </div>
+        </label>
+
+        <button class="primary-btn" type="submit">Sign Up</button>
+
+        <div class="divider">or Log in with</div>
+        <div class="socials">
+          <button class="social"><img src="google.jpg" alt="Google"></button>
+          <button class="social"><img src="Apple.jpg" alt="Apple"></button>
+          <button class="social"><img src="facebook.png" alt="Facebook"></button>
+        </div>
+      </form>
+    </section>
+
+    <footer class="footer-note">Kixly.co</footer>
   </div>
+</main>
+
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2 id="popup-title">Message</h2>
+    <p id="popup-text">This is a popup message.</p>
+    <button id="popup-btn">OK</button>
+  </div>
+</div>
 
 <script>
-  // Theme detection
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
   const setTheme = () => document.body.classList.toggle('dark', prefersDark.matches);
   setTheme();
   prefersDark.addEventListener('change', setTheme);
 
-  // Tabs
   const tabSignin = document.getElementById('tab-signin');
   const tabSignup = document.getElementById('tab-signup');
   const formSignin = document.getElementById('form-signin');
@@ -206,7 +200,6 @@
   tabSignin.addEventListener('click', ()=>activateTab('signin'));
   tabSignup.addEventListener('click', ()=>activateTab('signup'));
 
-  // Password toggle
   document.querySelectorAll('.eye-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const input = document.getElementById(btn.dataset.target);
@@ -215,7 +208,6 @@
     });
   });
 
-  // Popup function
   const popup = document.getElementById('popup');
   const popupTitle = document.getElementById('popup-title');
   const popupText = document.getElementById('popup-text');
@@ -232,26 +224,10 @@
     };
   }
 
-  // Helper functions for multiple accounts
-  function getAccounts() {
-    // Get accounts from localStorage or empty array
-    const accounts = localStorage.getItem('accounts');
-    return accounts ? JSON.parse(accounts) : [];
-  }
-
-  function saveAccount(account) {
-    const accounts = getAccounts();
-    accounts.push(account);
-    localStorage.setItem('accounts', JSON.stringify(accounts));
-  }
-
-  function findAccount(email) {
-    const accounts = getAccounts();
-    return accounts.find(acc => acc.email === email);
-  }
-
-  // Sign-Up Logic
-  formSignup.addEventListener('submit', e => {
+  // -----------------------
+  // SIGN UP — connect to PHP
+  // -----------------------
+  formSignup.addEventListener('submit', async e => {
     e.preventDefault();
 
     const name = e.target.name.value.trim();
@@ -264,41 +240,31 @@
       return;
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      showPopup('Invalid Email', 'Please enter a valid email address.');
-      return;
+    try {
+      const response = await fetch("http://localhost/kixly_backend/signup.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, email, password })
+      });
+
+      const result = await response.json();
+
+      if (result.status !== 'success') {
+        showPopup("Sign Up Failed", result.message);
+        return;
+      }
+
+      showPopup("Sign Up Successful", "Your account has been created. Please sign in.", "Proceed to Sign In", () => activateTab("signin"));
+      formSignup.reset();
+    } catch (err) {
+      showPopup("Server Error", "Cannot connect to backend. Is XAMPP running?");
     }
-
-    // Validate phone number (digits only)
-    const phoneRegex = /^[0-9]+$/;
-    if (!phoneRegex.test(phone)) {
-      showPopup('Invalid Phone Number', 'Please enter a valid phone number.');
-      return;
-    }
-
-    // Check if account exists
-    if (findAccount(email)) {
-      showPopup('Email Exists', 'This email is already registered. Please sign in.');
-      return;
-    }
-
-    // Save account
-    saveAccount({ name, phone, email, password });
-
-    showPopup(
-      'Sign Up Successful',
-      'Your account has been created successfully. Please proceed to sign in.',
-      'Proceed to Sign In',
-      () => activateTab('signin')
-    );
-
-    formSignup.reset();
   });
 
-  // Sign-In Logic
-  formSignin.addEventListener('submit', e => {
+  // -----------------------
+  // LOGIN — connect to PHP
+  // -----------------------
+  formSignin.addEventListener('submit', async e => {
     e.preventDefault();
 
     const email = e.target.email.value.trim();
@@ -309,37 +275,35 @@
       return;
     }
 
-    const account = findAccount(email);
+    try {
+      const response = await fetch("http://localhost/kixly_backend/login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-    if (!account) {
-      showPopup('Sign Up Required', 'No account found. Please sign up first.');
-      return;
+      const result = await response.json();
+
+      if (result.status !== 'success') {
+        showPopup("Login Failed", result.message);
+        return;
+      }
+
+      const page = document.getElementById('pageContent');
+      page.classList.add('active');
+      setTimeout(() => window.location.href = "indexhome.html", 800);
+    } catch (err) {
+      showPopup("Server Error", "Cannot connect to backend. Is XAMPP running?");
     }
-
-    if (account.password !== password) {
-      showPopup('Login Failed', 'Incorrect email or password. Please try again.');
-      return;
-    }
-
-    // Success: redirect to index.html
-    const page = document.getElementById('pageContent');
-    page.classList.add('active'); // fade-out animation
-    setTimeout(() => window.location.href = 'indexhome.html', 800);
   });
 
-
-  // Social login buttons - show popup for now
-document.querySelectorAll('.social').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    showPopup(
-      'Not Supported',
-      'We apologize, but this sign-in option is not supported yet.'
-    );
+  // Social login buttons
+  document.querySelectorAll('.social').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      showPopup('Not Supported', 'We apologize, but this sign-in option is not supported yet.');
+    });
   });
-});
-
 </script>
-
 </body>
 </html>
